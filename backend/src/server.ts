@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
+import https from 'https';
 
 
 // 确保静态文件目录存在
@@ -33,8 +34,14 @@ dotenv.config();
 
 const PORT = parseInt(process.env.PORT || '3001', 10); // 确保端口是数字
 
-const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+// HTTPS配置
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/fullchain.pem')
+};
+
+const server = https.createServer(options, app).listen(PORT, '0.0.0.0', () => {
+  console.log(`HTTPS Server running on port ${PORT}`);
 });
 
 process.on('SIGTERM', async () => {

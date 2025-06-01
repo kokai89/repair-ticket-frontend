@@ -47,7 +47,7 @@ const TicketListPage: React.FC = () => {
         console.log('Fetching tickets with token:', token);
         console.log('Current time:', new Date().toISOString());
         const api = axios.create({
-          baseURL: 'http://localhost:3001/api',
+          baseURL: `${process.env.REACT_APP_API_URL}/api`,
           timeout: 5000,
           headers: {
             'Content-Type': 'application/json',

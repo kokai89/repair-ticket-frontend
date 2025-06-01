@@ -39,7 +39,7 @@ const UserManagementPage: React.FC = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:3001/api/users', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(response.data);
@@ -75,7 +75,7 @@ const UserManagementPage: React.FC = () => {
 
       if (currentUser.id) {
         await axios.put(
-          `http://localhost:3001/api/users/${currentUser.id}`, 
+          `${process.env.REACT_APP_API_URL}/api/users/${currentUser.id}`,
           {
             username: currentUser.username,
             role: currentUser.role
@@ -85,7 +85,7 @@ const UserManagementPage: React.FC = () => {
         alert('用户更新成功');
       } else {
         const response = await axios.post(
-          'http://localhost:3001/api/users',
+          `${process.env.REACT_APP_API_URL}/api/users`,
           {
             username: currentUser.username,
             role: currentUser.role,
@@ -106,7 +106,7 @@ const UserManagementPage: React.FC = () => {
   const handleDeleteUser = async (id: number) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:3001/api/users/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchUsers();

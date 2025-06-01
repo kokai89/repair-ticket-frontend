@@ -81,7 +81,7 @@ const TicketDetailPage: React.FC = () => {
         }
         
         const api = axios.create({
-          baseURL: 'http://localhost:3001/api',
+          baseURL: `${process.env.REACT_APP_API_URL}/api`,
           timeout: 10000,
           headers: { 
             'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const TicketDetailPage: React.FC = () => {
             : `/signatures/${cleanPath.replace(/^\/?signatures\/?/, '')}`;
           // 编码URI组件但保留必要的斜杠
           const encodedPath = encodeURI(normalizedPath).replace(/%2F/g, '/');
-          const signatureUrl = `http://localhost:3001${encodedPath}`;
+          const signatureUrl = `${process.env.REACT_APP_API_URL}${encodedPath}`;
           console.log('Processed signature URL:', signatureUrl);
           console.log('Fetching signature from:', signatureUrl);
           
@@ -200,7 +200,7 @@ const TicketDetailPage: React.FC = () => {
       }
       
       const api = axios.create({
-        baseURL: 'http://localhost:3001/api',
+        baseURL: `${process.env.REACT_APP_API_URL}/api`,
         timeout: 10000,
         headers: { 
           'Content-Type': 'application/json',
@@ -229,7 +229,7 @@ const TicketDetailPage: React.FC = () => {
       
       console.log('开始更新工单状态');
       const api = axios.create({
-        baseURL: 'http://localhost:3001/api',
+        baseURL: `${process.env.REACT_APP_API_URL}/api`,
         timeout: 10000,
         headers: { Authorization: `Bearer ${token}` }
       });

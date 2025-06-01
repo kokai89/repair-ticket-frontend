@@ -29,7 +29,7 @@ const TicketManagementPage: React.FC = () => {
   const fetchTickets = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3001/api/tickets', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tickets`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

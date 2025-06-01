@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import https from 'https';
+import fs from 'fs';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import authRoutes from './routes/auth';
@@ -37,7 +39,10 @@ const app = express();
 
 // CORS配置 - 必须放在所有中间件和路由之前
 app.use(cors({
-  origin: true,
+  origin: [
+    'https://repair-ticket-frontend.vercel.app',
+    'http://localhost:3000'
+  ],
   credentials: true,
   methods: ['GET','POST','PUT','DELETE','PATCH','OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']

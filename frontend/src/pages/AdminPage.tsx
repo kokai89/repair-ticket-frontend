@@ -58,7 +58,7 @@ const AdminPage: React.FC = () => {
     const fetchTickets = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:3001/api/tickets', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/tickets`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

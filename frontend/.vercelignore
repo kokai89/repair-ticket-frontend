@@ -1,0 +1,11 @@
+node_modules/
+dist/
+electron/
+*.exe
+*.asar
+*.html
+*.bin
+public/signatures/
+*.log
+*.png
+*.jpg

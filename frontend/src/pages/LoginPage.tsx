@@ -20,7 +20,7 @@ const LoginPage: React.FC = () => {
       };
       console.log('Request data:', requestData);
       
-      const response = await axios.post(`https://8.138.248.160:3001/api/auth/login`, 
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, 
         requestData, 
         {
           headers: {

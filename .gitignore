@@ -1,0 +1,21 @@
+# 忽略数据库文件
+backend/prisma/dev.db
+
+# 忽略环境文件
+backend/.env
+frontend/.env
+
+# 忽略依赖文件
+node_modules/
+package-lock.json
+
+# 忽略IDE文件
+.vscode/
+.idea/
+
+# 忽略构建输出
+dist/
+build/
+*.tar.gz
+*.exe
+*.asar
