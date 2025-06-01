@@ -13,14 +13,23 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     try {
       console.log('Sending login request with:', { username, password });
-      const response = await axios.post('http://192.168.0.106:3001/api/auth/login', {
+      console.log('API URL:', process.env.REACT_APP_API_URL);
+      const requestData = {
         username,
         password
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
+      };
+      console.log('Request data:', requestData);
+      
+      const response = await axios.post(`https://8.138.248.160:3001/api/auth/login`, 
+        requestData, 
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          withCredentials: true
         }
-      });
+      );
+      console.log('Response:', response.data);
 
       const responseData = response.data;
       
