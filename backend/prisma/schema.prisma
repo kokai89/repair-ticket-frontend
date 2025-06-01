@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  role      String   @default("technician") // 'technician' or 'admin'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tickets   Ticket[]
+}
+
+model Ticket {
+  id          Int      @id @default(autoincrement())
+  title       String   @default("新工单")
+  description String   @default("")
+  status      String   @default("pending") // pending, in_progress, completed, closed
+  priority    String   @default("medium") // low, medium, high
+  customerName String?
+  contact     String?
+  phone       String?
+  address     String?
+  deviceName  String?
+  deviceModel String?
+  serialNumber String?
+  solution    String?
+  arrivalTime DateTime?
+  finishTime  DateTime?
+  parts       String?    // 存储配件信息(JSON字符串): {name: "配件名称", brand: "品牌", model: "型号", quantity: 1}
+  customerFeedback String?
+  technician  User     @relation(fields: [technicianId], references: [id])
+  technicianId Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt @default(now())
+  signatures  Signature[]
+  locations   Location[]
+}
+
+model Signature {
+  id        Int      @id @default(autoincrement())
+  signature String   @map("imageUrl")
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  ticketId  Int
+  signedAt  DateTime @default(now())
+}
+
+model Location {
+  id        Int      @id @default(autoincrement())
+  latitude  Float
+  longitude Float
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  ticketId  Int
+  recordedAt DateTime @default(now())
+}
