@@ -1,21 +1,23 @@
-# 忽略数据库文件
-backend/prisma/dev.db
-
-# 忽略环境文件
-backend/.env
-frontend/.env
-
-# 忽略依赖文件
+<<<<<<< HEAD
+# 基础忽略规则
 node_modules/
-package-lock.json
-
-# 忽略IDE文件
-.vscode/
-.idea/
-
-# 忽略构建输出
 dist/
 build/
 *.tar.gz
 *.exe
 *.asar
+
+# 后端特定忽略
+backend/prisma/dev.db
+backend/.env
+/src/generated/prisma
+
+# 前端特定忽略
+frontend/.env
+
+# 开发环境忽略
+package-lock.json
+.vscode/
+.idea/
+
+>>>>>>> 988610728eac4676eedaf601f8a298a59b582839
