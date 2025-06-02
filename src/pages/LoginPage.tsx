@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     try {
       console.log('Sending login request with:', { username, password });
-      const response = await axios.post(`/api/auth/login`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
         username,
         password
       }, {
