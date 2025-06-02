@@ -13,7 +13,7 @@ import UserManagementPage from './pages/UserManagementPage';
 import TicketManagementPage from './pages/TicketManagementPage';
 
 // 配置API基础URL
-axios.defaults.baseURL = process.env.REACT_APP_API_URL || window.location.protocol + '//' + window.location.hostname + ':3001';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://8.138.248.160:3001';
 axios.defaults.withCredentials = true;
 
 const theme = createTheme({
