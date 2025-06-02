@@ -6,8 +6,6 @@
     "config": {
       "distDir": "build",
       "includeFiles": [
-        "src/**",
-        "public/**",
         "package.json"
       ]
     }
@@ -20,7 +18,14 @@
     {
       "src": "/(.*)", 
       "dest": "/index.html"
+    },
+    {
+      "src": "/static/(.*)",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     }
   ],
-  "regions": ["hkg1"]
+  "regions": ["hkg1"],
+  "public": false
 }
